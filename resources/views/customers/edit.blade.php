@@ -14,7 +14,7 @@
       position: relative;
       display: inline-block;
       width: 60px;
-      height: 3px;
+      height: 34px;
   }
 
   /* Hide default HTML checkbox */
