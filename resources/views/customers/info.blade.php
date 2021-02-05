@@ -174,14 +174,14 @@
                   <td>
                       {{$company->name}}
                   </td>
-                  <td class="table-user">
-                    {{$company->share_amount}}
+                  <td class="table-user acs">
+                    {{number_format($company->share_amount,2)}}
                   </td>
-                  <td>
-                    {{$company->price_per_share}}
+                  <td class="acs">
+                    {{number_format($company->price_per_share,2)}}
                   </td>
-                  <td>
-                    {{$company->all_share_amount}}
+                  <td class="acs">
+                    {{number_format($company->all_share_amount,2)}}
                   </td>
                   <td>
                     {{date("m-d-Y", strtotime($company->purchase_date))}}
@@ -521,11 +521,11 @@
       
       $('#cid').val(c_id);
       $('#cn').val(cn);
-      $('#sa').val(sa);
+      $('#sa').val(set_share_amount(sa));
       $('#dp').val(pd);
-      $('#pps').val(pps);
+      $('#pps').val(set_price_per_share(pps));
       $('#c_note').val(cnote);
-      $('#tm').html(asa);
+      $('#tm').html(set_total_amount(asa));
       if(bip==1){
         $('#flag').val('on'); 
         $('#edit_is_paid').prop('checked', true);
@@ -566,6 +566,15 @@
     var parts = number.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
+  }
+  function set_share_amount(val){
+    return numberWithCommas(val);
+  }
+  function set_price_per_share(val){
+    return numberWithCommas(val);
+  }
+  function set_total_amount(val){
+    return numberWithCommas(val);
   }
 </script>
 @endsection

@@ -111,6 +111,21 @@ class CompanyController extends Controller
     protected function saveAjax(Request $request)
     {
         $data = $request->all();
+        $saa = explode(',',$data['share_amount']);
+        $share_amount = '';
+        foreach ($saa as $k => $v) {
+            $share_amount .= $v;
+        }
+        $ppsa = explode(',',$data['price_per_share']);
+        $price_per_share = '';
+        foreach ($ppsa as $ke => $va) {
+            $price_per_share .= $va;
+        }
+        $asaa = explode(',',$data['all_share_amount']);
+        $all_share_amount = '';
+        foreach ($asaa as $key => $val) {
+            $all_share_amount .= $val;
+        }
         $companies = array();
         $company_id = 0;
         if (count($data) > 0) {
@@ -122,9 +137,9 @@ class CompanyController extends Controller
             $company = Company::create([
                 'user_id' => Auth::user()->id,
                 'name' => $data['cname'],
-                'share_amount' => $data['share_amount'],
-                'price_per_share' => $data['price_per_share'],
-                'all_share_amount' => $data['all_share_amount'],
+                'share_amount' => $share_amount,
+                'price_per_share' => $price_per_share,
+                'all_share_amount' => $all_share_amount,
                 'paid_date' => Carbon::parse($data['paid_date'])->format('Y-m-d'),
                 'company_note' => $data['company_note'],
                 'is_paid' => $is_paid,
@@ -182,6 +197,21 @@ class CompanyController extends Controller
     public function uci(Request $request){
 
         $data = $request->all();
+        $saa = explode(',',$data['sa']);
+        $share_amount = '';
+        foreach ($saa as $k => $v) {
+            $share_amount .= $v;
+        }
+        $ppsa = explode(',',$data['pps']);
+        $price_per_share = '';
+        foreach ($ppsa as $ke => $va) {
+            $price_per_share .= $va;
+        }
+        $asaa = explode(',',$data['asa']);
+        $all_share_amount = '';
+        foreach ($asaa as $key => $val) {
+            $all_share_amount .= $val;
+        }
             if($data['ipd']!=''){
                 $is_paid = '1';
             }else{
@@ -189,9 +219,9 @@ class CompanyController extends Controller
             }
             $response = Company::where('id',$data['ci'])->update([
                 'name' => $data['cn'] ,
-                'share_amount' => $data['sa'] ,
-                'price_per_share' => $data['pps'] ,
-                'all_share_amount' => $data['asa'],
+                'share_amount' => $share_amount ,
+                'price_per_share' => $price_per_share ,
+                'all_share_amount' => $all_share_amount,
                 'purchase_date' => Carbon::parse($data['pd'])->format('Y-m-d') ,
                 'paid_date' => Carbon::parse($data['ipd'])->format('Y-m-d') ,
                 'company_note' => $data['cnote'] ,

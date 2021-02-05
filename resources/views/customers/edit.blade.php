@@ -519,5 +519,9 @@
               parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
               return parts.join(".");
             }
+            function set_amount_per_person(){
+              $('#amount_per_person').val(numberWithCommas(<?php echo $customer->amount_per_person;?>));
+            }
+            set_amount_per_person();
     </script>
 @endsection

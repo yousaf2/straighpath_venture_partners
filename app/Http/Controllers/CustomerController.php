@@ -87,6 +87,11 @@ class CustomerController extends Controller
     protected function save(Request $request)
     {
         $data = $request->all();
+        $appa = explode(',',$data['amount_per_person']);
+        $amount_per_person = '';
+        foreach ($appa as $k => $v) {
+            $amount_per_person .= $v;
+        }
         $this->validator($data)->validate();
         if ($this->validator($data)) {
             $dob = Carbon::parse($data['dob'])->format('Y-m-d');
@@ -109,7 +114,7 @@ class CustomerController extends Controller
                 'fund' => $data['fund'],
                 'ssn' => $data['ssn'],
                 'account_type' => $data['account_type'],
-                'amount_per_person' => $data['amount_per_person'],
+                'amount_per_person' => $amount_per_person,
                 'representative' => $data['representative'],
                 'notes' => $data['notes'],
                 /*'requirement_date' => $rdate,*/
@@ -188,6 +193,11 @@ class CustomerController extends Controller
     {
         $data = $request->all();
         /*echo '<pre>';print_r($data);die();*/
+        $appa = explode(',',$data['amount_per_person']);
+        $amount_per_person = '';
+        foreach ($appa as $k => $v) {
+            $amount_per_person .= $v;
+        }
         $this->validator($data)->validate();
         if ($this->validator($data)) {
             $id = $data['id'];
@@ -210,7 +220,7 @@ class CustomerController extends Controller
                 'fund' => $data['fund'],
                 'ssn' => $data['ssn'],
                 'account_type' => $data['account_type'],
-                'amount_per_person' => $data['amount_per_person'],
+                'amount_per_person' => $amount_per_person,
                 'representative' => $data['representative'],
                 'notes' => $data['notes'],
                 /*'requirement_date' => $rdate*/
