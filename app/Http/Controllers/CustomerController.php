@@ -301,7 +301,7 @@ class CustomerController extends Controller
                         'company_id' => $position
                     ]);
                 }
-                $cc_id = Company::whereIn('id', $positions)->orderBy('purchase_date','DESC')->skip(0)->take(1)->first()->id;
+                $cc_id = Company::whereIn('id', $positions)->orderBy('created_at','DESC')->skip(0)->take(1)->first()->id;
                 Customer::where('id',$id)->update(['cc_id' => $cc_id]);
             }
             else{
