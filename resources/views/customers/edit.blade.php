@@ -508,19 +508,16 @@
             });
         });
             $('.auc').keyup(function(event) {
-              // skip for arrow keys
-              if(event.which >= 37 && event.which <= 40) return;
-              // format number
-                $(this).val(function(index, value) {
-                  return value
-                  .replace(/\D/g, "")
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                  ;
-                });
+              $(this).val(amountWithCommas($(this).val().split(",").join("")));
             });
 
             function numberWithCommas(x) {
               return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            function amountWithCommas(number) {
+              var parts = number.toString().split(".");
+              parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+              return parts.join(".");
             }
     </script>
 @endsection
