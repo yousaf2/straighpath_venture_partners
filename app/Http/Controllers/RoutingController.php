@@ -57,13 +57,18 @@ class RoutingController extends Controller
         $users = User::where('id','<>',0)->paginate(10);
         $filters = $request->input('filters');
 
-        $customers = Customer::where('customers.id','<>',0)->leftJoin('companies', 'customers.cc_id', '=', 'companies.id')
-            ->select('customers.id', 'customers.first_name', 'customers.representative', 'customers.last_name', 'companies.name', 'companies.purchase_date', 'companies.share_amount');
+        $customers = Customer::where('customers.id','<>',0)
+        ->leftJoin('companies', 'customers.cc_id', '=', 'companies.id')
+        ->select('customers.id', 'customers.first_name', 'customers.representative', 'customers.last_name', 'companies.name', 'companies.purchase_date', 'companies.share_amount');
 
 
         if (!empty($filters)) {
             $purchase_date = $request->input('purchase_s_date');
-            if(!empty($purchase_date)){
+            if(!empty($purchase_date) && empty($purchase_e_date)){
+                $purchase_date = date('Y-m-d', strtotime($request->input('purchase_s_date')));
+                $customers = $customers->where('companies.purchase_date', '=', $purchase_date);
+            }
+            if(!empty($purchase_date) && !empty($purchase_e_date)){
                 $purchase_date = date('Y-m-d', strtotime($request->input('purchase_s_date')));
                 $customers = $customers->where('companies.purchase_date', '>=', $purchase_date);
             }
