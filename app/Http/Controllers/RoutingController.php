@@ -103,7 +103,7 @@ class RoutingController extends Controller
             }
 
         }
-        $customers = $customers->paginate(10);
+        $customers = $customers->paginate(100);
         /*$customers = $customer->where('customers.id','<>',0)->leftJoin('companies', 'customers.cc_id', '=', 'companies.id')
             ->select('customers.id', 'customers.first_name', 'customers.representative', 'customers.last_name', 'companies.name', 'companies.purchase_date', 'companies.share_amount')->paginate(10);*/
         $companies = Company::where('id','<>',0)->get();
