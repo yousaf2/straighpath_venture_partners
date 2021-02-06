@@ -42,7 +42,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-2">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 mb-3">
                             <?php /*button type="button" class="btn btn-danger waves-effect waves-light" data-toggle="modal" data-target="#custom-modal"><i class="mdi mdi-plus-circle mr-1"></i> Add Customers</button */?>
                             
                             <form method="post" action="" class="form-inline">
@@ -76,8 +76,9 @@
                                     <input class="form-control" type="text" name="company" placeholder="Company Name" value="{{isset($_POST['company']) ? $_POST['company'] : ''}}">
                                     </div>
                                     <div class="col-lg-3 mt-2 text-right">
-                                    <input type="submit" name="filters" value="Search" class="btn btn-primary" style="margin-right: 2px; width : 120px;">
-                                    </div>
+                                    <button class="btn btn-primary" type="submit" style="margin-right: 2px; width : 120px;">Search</button>
+                                    <!-- <input type="submit" name="filters" value="Search" class="btn btn-primary" style="margin-right: 2px; width : 120px;">
+                                    </div> -->
                             </form>
                         </div>
                             <?php /*div class="col-sm-8">

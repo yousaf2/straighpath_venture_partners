@@ -151,6 +151,7 @@ class CompanyController extends Controller
                     'customer_id' => $data['customer_id'],
                     'company_id' => $company->id
                 ]);
+                Customer::where('id',$data['customer_id'])->update(['cc_id' => $company->id]);
                 if($response){
                     return $response;
                     exit();
