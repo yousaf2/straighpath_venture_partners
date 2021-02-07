@@ -120,7 +120,7 @@
                                                     </div>
                                                     </td */?>
                                                     <td>
-                                                        {{date("m-d-Y", strtotime($customer->purchase_date))}}
+                                                        {{($customer->purchase_date!='') ? $customer->purchase_date : ' ' }}
                                                     </td>
                                                     <td class="table-user">
                                                         <?php /*img src="{{asset('assets/images/users/user-4.jpg')}}" alt="table-user" class="mr-2 rounded-circle" */?>
